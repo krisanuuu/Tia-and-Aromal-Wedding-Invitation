@@ -1,0 +1,1763 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#faf6ed">
+<title>Tia & Aromal | Wedding Invitation</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+:root {
+    --cream: #faf6ed;
+    --cream-dark: #eee4d3;
+    --gold: #b18a50;
+    --gold-light: #d7bd8c;
+    --brown: #49372b;
+    --text: #756253;
+    --white: #fffdf9;
+    --shadow: 0 15px 45px rgba(76,53,32,.10);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+body {
+    background: var(--cream);
+    color: var(--brown);
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+button, a {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: min(1100px, 90%);
+    margin: auto;
+}
+
+.section {
+    padding: 100px 0;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.section-heading .eyebrow {
+    color: var(--gold);
+    letter-spacing: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.section-heading h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(48px, 7vw, 72px);
+    font-weight: 400;
+    margin-top: 10px;
+}
+
+.section-heading p {
+    color: var(--text);
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.gold-line {
+    width: 65px;
+    height: 1px;
+    background: var(--gold);
+    margin: 20px auto;
+}
+
+.card {
+    background: var(--white);
+    border: 1px solid rgba(177,138,80,.18);
+    box-shadow: var(--shadow);
+    border-radius: 4px;
+}
+
+/* ENVELOPE */
+
+.intro-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: radial-gradient(circle at center, #fffdf9, var(--cream));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity .9s ease, visibility .9s ease;
+}
+
+.intro-screen.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.envelope-wrap {
+    text-align: center;
+    padding: 25px;
+}
+
+.intro-small {
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 10px;
+    color: var(--gold);
+    margin-bottom: 25px;
+}
+
+.envelope {
+    position: relative;
+    width: min(330px, 78vw);
+    height: 215px;
+    margin: auto;
+    background: #d8c4a5;
+    border-radius: 5px;
+    box-shadow: 0 20px 45px rgba(67,46,29,.18);
+    cursor: pointer;
+    perspective: 900px;
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,#eadbc0,#c9ad82);
+    clip-path: polygon(0 0,50% 60%,100% 0);
+    z-index: 3;
+    transform-origin: top;
+    transition: transform .9s ease;
+}
+
+.envelope::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg,#c7ac81,#e6d3b2);
+    clip-path: polygon(0 100%,50% 50%,100% 100%);
+    z-index: 2;
+}
+
+.envelope-letter {
+    position: absolute;
+    width: 88%;
+    height: 88%;
+    left: 6%;
+    top: 6%;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: transform 1s ease;
+    z-index: 1;
+}
+
+.envelope-letter span {
+    font-family: 'Great Vibes', cursive;
+    font-size: 38px;
+    color: var(--gold);
+}
+
+.envelope-letter small {
+    letter-spacing: 3px;
+    font-size: 9px;
+    margin-top: 10px;
+}
+
+.seal {
+    position: absolute;
+    z-index: 5;
+    left: 50%;
+    top: 54%;
+    transform: translate(-50%,-50%);
+    width: 48px;
+    height: 48px;
+    background: #9e7042;
+    border: 2px solid #e6cda3;
+    border-radius: 50%;
+    color: white;
+    display: grid;
+    place-items: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 23px;
+    transition: opacity .4s;
+}
+
+.envelope.open::before {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.envelope.open .envelope-letter {
+    transform: translateY(-105px);
+    z-index: 4;
+}
+
+.envelope.open .seal {
+    opacity: 0;
+}
+
+.open-text {
+    margin-top: 30px;
+    color: var(--text);
+    font-size: 12px;
+    letter-spacing: 1px;
+    animation: softPulse 2s infinite;
+}
+
+@keyframes softPulse {
+    50% { opacity: .5; }
+}
+
+/* NAVIGATION */
+
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+    padding: 22px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--white);
+}
+
+.nav-logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 30px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.nav-links a:hover {
+    color: var(--gold-light);
+}
+
+.menu-btn {
+    display: none;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,.5);
+    color: white;
+    padding: 7px 12px;
+    border-radius: 3px;
+}
+
+/* HERO - COVER PHOTO */
+
+.hero {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+    background-color: #49372b;
+    background-image:
+        linear-gradient(rgba(34,25,18,.42),rgba(34,25,18,.58)),
+        url("./images/cover.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 20px;
+    border: 1px solid rgba(230,204,158,.55);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 100px 20px 60px;
+}
+
+.hero-top {
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #ead5ae;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(65px,12vw,125px);
+    font-weight: 400;
+    line-height: 1.15;
+}
+
+.hero-amp {
+    color: var(--gold-light);
+    font-size: .75em;
+}
+
+.hero-subtitle {
+    font-size: 11px;
+    letter-spacing: 5px;
+    margin-top: 22px;
+    text-transform: uppercase;
+}
+
+.hero-date {
+    margin-top: 35px;
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    letter-spacing: 3px;
+}
+
+.hero-location {
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-top: 12px;
+    color: #ead5ae;
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+.scroll-down span {
+    display: block;
+    font-size: 22px;
+    margin-top: 7px;
+}
+
+/* COUNTDOWN */
+
+.countdown-section {
+    background: var(--cream-dark);
+    text-align: center;
+    padding: 75px 20px;
+}
+
+.countdown-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+    font-weight: 400;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: clamp(15px,5vw,55px);
+    margin-top: 35px;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    min-width: 65px;
+}
+
+.countdown-item strong {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px,6vw,48px);
+    font-weight: 400;
+    color: var(--gold);
+    display: block;
+}
+
+.countdown-item span {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--text);
+    text-transform: uppercase;
+}
+
+#countdownMessage {
+    color: var(--gold);
+    margin-top: 25px;
+    font-size: 13px;
+}
+
+/* COUPLE */
+
+.couple-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    max-width: 850px;
+    margin: auto;
+}
+
+.person-card {
+    text-align: center;
+    padding: 20px 20px 35px;
+}
+
+.person-image {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 3px;
+    margin-bottom: 25px;
+    background: #e7ddce;
+}
+
+.person-card h3 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--gold);
+}
+
+.person-card p {
+    color: var(--text);
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+/* FAMILIES */
+
+.families, .programme, .share-section {
+    background: #f1e8da;
+}
+
+.family-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.family-card {
+    text-align: center;
+    padding: 40px 25px;
+}
+
+.family-symbol {
+    color: var(--gold);
+    font-size: 27px;
+}
+
+.family-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    margin: 17px 0;
+    font-size: 20px;
+}
+
+.family-card p {
+    color: var(--text);
+    font-size: 13px;
+    line-height: 2;
+}
+
+/* GALLERY */
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 16px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    height: 320px;
+    cursor: pointer;
+    background: var(--cream-dark);
+    position: relative;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .7s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.07);
+}
+
+.gallery-item::after {
+    content: "VIEW PHOTO";
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    color: white;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-shadow: 0 1px 5px #333;
+}
+
+/* LIGHTBOX */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(20,15,12,.94);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+}
+
+.lightbox-close {
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    color: white;
+    background: transparent;
+    border: 0;
+    font-size: 35px;
+}
+
+/* PROGRAMME */
+
+.timeline {
+    max-width: 650px;
+    margin: auto;
+    position: relative;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--gold-light);
+}
+
+.timeline-item {
+    width: 50%;
+    padding: 15px 35px;
+    position: relative;
+}
+
+.timeline-item:nth-child(even) {
+    margin-left: 50%;
+    text-align: left;
+}
+
+.timeline-item:nth-child(odd) {
+    text-align: right;
+}
+
+.timeline-item::after {
+    content: "";
+    position: absolute;
+    top: 25px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 3px solid #f1e8da;
+    box-shadow: 0 0 0 1px var(--gold);
+}
+
+.timeline-item:nth-child(odd)::after {
+    right: -7px;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: -7px;
+}
+
+.timeline-item time {
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 23px;
+}
+
+.timeline-item h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 17px;
+    margin: 7px 0;
+}
+
+.timeline-item p {
+    color: var(--text);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+/* VENUE */
+
+.venue-card {
+    max-width: 750px;
+    margin: auto;
+    padding: 55px 25px;
+    text-align: center;
+}
+
+.venue-icon {
+    font-size: 35px;
+    color: var(--gold);
+}
+
+.venue-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 500;
+    margin: 20px 0 12px;
+}
+
+.venue-card p {
+    color: var(--text);
+    font-size: 13px;
+    line-height: 2;
+}
+
+.venue-date {
+    margin-top: 20px;
+    color: var(--gold) !important;
+}
+
+.btn {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    background: var(--gold);
+    color: white;
+    padding: 13px 25px;
+    margin-top: 25px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: transparent;
+    color: var(--gold);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--gold);
+}
+
+.btn-outline:hover {
+    background: var(--gold);
+    color: white;
+}
+
+/* BLESSING */
+
+.blessing {
+    position: relative;
+    padding: 110px 20px;
+    text-align: center;
+    color: white;
+    background-color: #574333;
+    background-image:
+        linear-gradient(rgba(45,33,23,.78),rgba(45,33,23,.82)),
+        url("./images/couple3.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.blessing-inner {
+    max-width: 760px;
+    margin: auto;
+    border: 1px solid rgba(226,199,151,.6);
+    padding: 55px 30px;
+}
+
+.blessing .ornament {
+    font-size: 27px;
+    color: var(--gold-light);
+}
+
+.blessing h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(45px,8vw,65px);
+    font-weight: 400;
+    margin: 15px 0;
+}
+
+.blessing p {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    line-height: 2;
+    color: #f1e4d1;
+}
+
+/* WISHES */
+
+.wishes-card {
+    max-width: 650px;
+    margin: auto;
+    padding: 35px;
+}
+
+.wishes-card input,
+.wishes-card textarea {
+    width: 100%;
+    padding: 14px;
+    margin: 8px 0;
+    border: 1px solid #e4d7c4;
+    background: #fffdf9;
+    outline: none;
+    color: var(--brown);
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+}
+
+.wishes-card textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.wishes-card input:focus,
+.wishes-card textarea:focus {
+    border-color: var(--gold);
+}
+
+.wish-list {
+    margin-top: 25px;
+}
+
+.wish {
+    border-bottom: 1px solid #eee2d1;
+    padding: 15px 0;
+}
+
+.wish strong {
+    color: var(--gold);
+    font-size: 13px;
+}
+
+.wish p {
+    font-size: 12px;
+    color: var(--text);
+    margin-top: 5px;
+}
+
+/* SHARE & QR */
+
+.share-section {
+    text-align: center;
+}
+
+.share-card {
+    max-width: 600px;
+    margin: auto;
+    padding: 40px 25px;
+}
+
+.share-card p {
+    color: var(--text);
+    font-size: 12px;
+    line-height: 2;
+}
+
+#qrcode {
+    display: flex;
+    justify-content: center;
+    margin: 25px auto;
+    min-height: 128px;
+}
+
+#qrcode img, #qrcode canvas {
+    padding: 8px;
+    background: white;
+    border: 1px solid #e8dcc9;
+}
+
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* SURPRISE */
+
+.surprise-section {
+    text-align: center;
+}
+
+.surprise-box {
+    max-width: 600px;
+    margin: auto;
+    padding: 40px 25px;
+}
+
+.surprise-box button {
+    border: 1px solid var(--gold);
+    background: transparent;
+    color: var(--gold);
+    padding: 15px 25px;
+    letter-spacing: 2px;
+    font-size: 10px;
+    text-transform: uppercase;
+    transition: .3s;
+}
+
+.surprise-box button:hover {
+    background: var(--gold);
+    color: white;
+}
+
+#surpriseMessage {
+    display: none;
+    font-family: 'Great Vibes', cursive;
+    color: var(--gold);
+    font-size: 36px;
+    margin-top: 25px;
+}
+
+/* FOOTER */
+
+footer {
+    background: #403126;
+    color: #e9d9c1;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+footer h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 55px;
+    font-weight: 400;
+}
+
+footer p {
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-top: 15px;
+    color: #cbb99f;
+}
+
+/* MUSIC BUTTON */
+
+.music-btn {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 100;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    background: var(--white);
+    color: var(--gold);
+    font-size: 19px;
+    box-shadow: var(--shadow);
+}
+
+.music-btn.playing {
+    animation: musicSpin 4s linear infinite;
+}
+
+@keyframes musicSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* CELEBRATION */
+
+.celebration {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    background: rgba(50,36,25,.94);
+    color: white;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+}
+
+.celebration.active {
+    display: flex;
+}
+
+.celebration h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(55px,10vw,90px);
+    font-weight: 400;
+}
+
+.celebration p {
+    color: #e6d2b2;
+    letter-spacing: 2px;
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+.celebration button {
+    margin-top: 30px;
+    border: 1px solid var(--gold-light);
+    color: white;
+    background: transparent;
+    padding: 12px 25px;
+}
+
+/* REVEAL */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px) {
+    .section {
+        padding: 75px 0;
+    }
+
+    .navbar {
+        padding: 18px 6%;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 65px;
+        right: 6%;
+        width: 190px;
+        background: #403126;
+        padding: 20px;
+        flex-direction: column;
+        gap: 18px;
+        border: 1px solid var(--gold);
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .hero::after {
+        inset: 12px;
+    }
+
+    .couple-grid, .family-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .person-image {
+        height: 420px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2,1fr);
+        gap: 10px;
+    }
+
+    .gallery-item {
+        height: 230px;
+    }
+
+    .timeline-item {
+        padding: 15px 22px;
+    }
+
+    .timeline-item time {
+        font-size: 18px;
+    }
+
+    .timeline-item h3 {
+        font-size: 14px;
+    }
+
+    .wishes-card {
+        padding: 25px 18px;
+    }
+}
+
+@media(max-width:420px) {
+    .gallery-item {
+        height: 180px;
+    }
+
+    .person-image {
+        height: 350px;
+    }
+
+    .countdown {
+        gap: 18px;
+    }
+
+    .countdown-item {
+        min-width: 55px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    *,*::before,*::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ENVELOPE INTRO -->
+<div class="intro-screen" id="introScreen">
+    <div class="envelope-wrap">
+        <p class="intro-small">A special invitation for you</p>
+
+        <div class="envelope" id="envelope" onclick="openInvitation()">
+            <div class="envelope-letter">
+                <span>Tia & Aromal</span>
+                <small>WEDDING INVITATION</small>
+            </div>
+            <div class="seal">T&A</div>
+        </div>
+
+        <p class="open-text">CLICK TO OPEN YOUR INVITATION</p>
+    </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+    <a href="#home" class="nav-logo">Tia & Aromal</a>
+
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Toggle navigation">
+        ☰
+    </button>
+
+    <div class="nav-links" id="navLinks">
+        <a href="#home" onclick="closeMenu()">Home</a>
+        <a href="#couple" onclick="closeMenu()">Couple</a>
+        <a href="#gallery" onclick="closeMenu()">Gallery</a>
+        <a href="#programme" onclick="closeMenu()">Programme</a>
+        <a href="#venue" onclick="closeMenu()">Venue</a>
+        <a href="#wishes" onclick="closeMenu()">Wishes</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="home">
+    <div class="hero-content">
+        <p class="hero-top">Together with our families</p>
+        <h1>Tia <span class="hero-amp">&</span> Aromal</h1>
+        <p class="hero-subtitle">Joyfully invite you to celebrate their wedding</p>
+        <div class="hero-date">WEDNESDAY · 10 · FEBRUARY · 2027</div>
+        <p class="hero-location">GURUVAYUR TEMPLE · KERALA</p>
+    </div>
+
+    <a href="#countdownSection" class="scroll-down">
+        SCROLL TO EXPLORE
+        <span>⌄</span>
+    </a>
+</header>
+
+<!-- COUNTDOWN -->
+<section class="countdown-section" id="countdownSection">
+    <div class="container">
+        <p class="countdown-title">Counting the moments...</p>
+
+        <div class="countdown">
+            <div class="countdown-item">
+                <strong id="days">00</strong>
+                <span>Days</span>
+            </div>
+            <div class="countdown-item">
+                <strong id="hours">00</strong>
+                <span>Hours</span>
+            </div>
+            <div class="countdown-item">
+                <strong id="minutes">00</strong>
+                <span>Minutes</span>
+            </div>
+            <div class="countdown-item">
+                <strong id="seconds">00</strong>
+                <span>Seconds</span>
+            </div>
+        </div>
+
+        <p id="countdownMessage">A beautiful new beginning awaits.</p>
+    </div>
+</section>
+
+<!-- COUPLE -->
+<section class="section" id="couple">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span class="eyebrow">Two hearts, one beautiful journey</span>
+            <h2>The Couple</h2>
+            <div class="gold-line"></div>
+            <p>With love, happiness and the blessings of our families.</p>
+        </div>
+
+        <div class="couple-grid">
+            <div class="person-card reveal">
+                <img src="./images/bride.jpg" alt="Bride Tia" class="person-image">
+                <h3>Tia</h3>
+                <p>Daughter of Manikandan & Kavitha</p>
+            </div>
+
+            <div class="person-card reveal">
+                <img src="./images/groom.jpg" alt="Groom Aromal" class="person-image">
+                <h3>Aromal</h3>
+                <p>Son of Babu & Suna</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAMILIES -->
+<section class="section families">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span class="eyebrow">With the love of our families</span>
+            <h2>Our Families</h2>
+            <div class="gold-line"></div>
+        </div>
+
+        <div class="family-grid">
+            <div class="family-card card reveal">
+                <div class="family-symbol">✧</div>
+                <h3>Bride's Family</h3>
+                <p>
+                    Tia<br>
+                    Daughter of<br>
+                    <strong>Manikandan & Kavitha</strong>
+                </p>
+            </div>
+
+            <div class="family-card card reveal">
+                <div class="family-symbol">✧</div>
+                <h3>Groom's Family</h3>
+                <p>
+                    Aromal<br>
+                    Son of<br>
+                    <strong>Babu & Suna</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section" id="gallery">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span class="eyebrow">A few beautiful moments</span>
+            <h2>Our Gallery</h2>
+            <div class="gold-line"></div>
+            <p>Memories that make this journey special.</p>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item reveal" onclick="openLightbox(this)">
+                <img src="./images/couple1.jpg" alt="Couple photograph">
+            </div>
+            <div class="gallery-item reveal" onclick="openLightbox(this)">
+                <img src="./images/couple2.jpg" alt="Couple photograph">
+            </div>
+            <div class="gallery-item reveal" onclick="openLightbox(this)">
+                <img src="./images/couple3.jpg" alt="Couple photograph">
+            </div>
+            <div class="gallery-item reveal" onclick="openLightbox(this)">
+                <img src="./images/bride.jpg" alt="Bride photograph">
+            </div>
+            <div class="gallery-item reveal" onclick="openLightbox(this)">
+                <img src="./images/groom.jpg" alt="Groom photograph">
+            </div>
+            <div class="gallery-item reveal" onclick="openLightbox(this)">
+                <img src="./images/cover.jpg" alt="Wedding cover photograph">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" aria-label="Close image">&times;</button>
+    <img id="lightboxImage" src="" alt="Full-size gallery photograph">
+</div>
+
+<!-- PROGRAMME -->
+<section class="section programme" id="programme">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span class="eyebrow">The day we have been waiting for</span>
+            <h2>Wedding Programme</h2>
+            <div class="gold-line"></div>
+            <p>Wednesday, 10 February 2027</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item reveal">
+                <time>09:30 AM</time>
+                <h3>Wedding Ceremony</h3>
+                <p>The beginning of a beautiful journey together.</p>
+            </div>
+
+            <div class="timeline-item reveal">
+                <time>10:30 AM</time>
+                <h3>Conclusion</h3>
+                <p>Thank you for being part of our special day.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- VENUE -->
+<section class="section" id="venue">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span class="eyebrow">We would love to see you there</span>
+            <h2>The Venue</h2>
+            <div class="gold-line"></div>
+        </div>
+
+        <div class="venue-card card reveal">
+            <div class="venue-icon">⌖</div>
+            <h3>Guruvayur Sree Krishna Temple</h3>
+
+            <p>
+                East Nada,<br>
+                Guruvayur, Thrissur,<br>
+                Kerala – 680101
+            </p>
+
+            <p class="venue-date">
+                Wednesday, 10 February 2027<br>
+                09:30 AM – 10:30 AM
+            </p>
+
+            <a class="btn"
+               href="https://www.google.com/maps/search/?api=1&query=Guruvayur+Sree+Krishna+Temple%2C+East+Nada%2C+Guruvayur%2C+Kerala+680101"
+               target="_blank" rel="noopener">
+                GET DIRECTIONS
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- BLESSING -->
+<section class="blessing">
+    <div class="blessing-inner reveal">
+        <div class="ornament">✧ ❀ ✧</div>
+        <h2>A Beautiful Beginning</h2>
+
+        <p>
+            May this new journey be filled with love,
+            understanding, laughter and endless happiness.
+            May every tomorrow bring you closer together
+            and every moment become a beautiful memory.
+        </p>
+
+        <div class="gold-line"></div>
+        <p>With love and best wishes for Tia & Aromal.</p>
+    </div>
+</section>
+
+<!-- WISHES -->
+<section class="section" id="wishes">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span class="eyebrow">Your love makes our day more special</span>
+            <h2>Send Your Wishes</h2>
+            <div class="gold-line"></div>
+            <p>Leave a little message for the couple.</p>
+        </div>
+
+        <div class="wishes-card card reveal">
+            <form id="wishForm">
+                <input type="text" id="guestName"
+                       placeholder="Your name" maxlength="50" required>
+
+                <textarea id="guestMessage"
+                          placeholder="Write your wishes..."
+                          maxlength="300" required></textarea>
+
+                <button type="submit" class="btn">SEND YOUR WISHES</button>
+            </form>
+
+            <div class="wish-list" id="wishList"></div>
+        </div>
+    </div>
+</section>
+
+<!-- SHARE AND QR -->
+<section class="section share-section">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span class="eyebrow">Share the happiness</span>
+            <h2>Spread the Love</h2>
+            <div class="gold-line"></div>
+        </div>
+
+        <div class="share-card card reveal">
+            <p>
+                We would be delighted to have you with us.
+                Share our invitation with your loved ones.
+            </p>
+
+            <div id="qrcode"></div>
+            <p>Scan the QR code to open the invitation.</p>
+
+            <div class="share-buttons">
+                <button class="btn" onclick="shareWhatsApp()">
+                    SHARE ON WHATSAPP
+                </button>
+
+                <button class="btn btn-outline" onclick="downloadCalendar()">
+                    SAVE THE DATE
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SURPRISE -->
+<section class="section surprise-section">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span class="eyebrow">A little something for you</span>
+            <h2>A Special Surprise</h2>
+            <div class="gold-line"></div>
+        </div>
+
+        <div class="surprise-box reveal">
+            <button onclick="revealSurprise()">
+                OPEN YOUR LITTLE SURPRISE ✧
+            </button>
+
+            <p id="surpriseMessage">
+                Your presence is the most beautiful gift.
+                We can't wait to celebrate with you! ♡
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <h2>Tia & Aromal</h2>
+    <p>10 · 02 · 2027</p>
+    <p>MADE WITH LOVE ♡</p>
+</footer>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="weddingMusic" loop preload="auto">
+    <source src="./music/wedding.mp3" type="audio/mpeg">
+</audio>
+
+<!-- MUSIC BUTTON -->
+<button class="music-btn" id="musicBtn"
+        onclick="toggleMusic()" aria-label="Toggle background music">
+    ♪
+</button>
+
+<!-- WEDDING DAY CELEBRATION -->
+<div class="celebration" id="celebration">
+    <div>
+        <h2>Today is the day!</h2>
+        <p>LET THE BEAUTIFUL JOURNEY BEGIN</p>
+        <button onclick="closeCelebration()">CONTINUE</button>
+    </div>
+</div>
+
+<script>
+
+/* WEDDING DETAILS */
+
+const WEDDING = {
+    bride: "Tia",
+    groom: "Aromal",
+    date: "2027-02-10T09:30:00",
+    endTime: "2027-02-10T10:30:00",
+    venue: "Guruvayur Sree Krishna Temple, East Nada, Guruvayur, Kerala 680101",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Guruvayur+Sree+Krishna+Temple%2C+East+Nada%2C+Guruvayur%2C+Kerala+680101"
+};
+
+/* Replace with your published URL after deployment */
+const INVITATION_URL = window.location.href;
+
+
+/* ENVELOPE + AUTOMATIC MUSIC */
+
+let invitationOpened = false;
+
+async function openInvitation() {
+    const envelope = document.getElementById("envelope");
+    const intro = document.getElementById("introScreen");
+
+    if (invitationOpened) return;
+    invitationOpened = true;
+
+    envelope.classList.add("open");
+
+    // Music starts from the envelope click.
+    const music = document.getElementById("weddingMusic");
+    const musicBtn = document.getElementById("musicBtn");
+
+    try {
+        music.volume = 0.5;
+        await music.play();
+
+        musicBtn.classList.add("playing");
+        musicBtn.textContent = "♫";
+    } catch (error) {
+        console.log("Music could not start. Check the music file path.", error);
+        invitationOpened = false;
+        return;
+    }
+
+    setTimeout(() => {
+        intro.classList.add("hide");
+        document.body.classList.remove("no-scroll");
+        window.scrollTo(0, 0);
+    }, 1000);
+}
+
+document.body.classList.add("no-scroll");
+
+
+/* NAVIGATION */
+
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("show");
+}
+
+function closeMenu() {
+    document.getElementById("navLinks").classList.remove("show");
+}
+
+
+/* MUSIC BUTTON */
+
+async function toggleMusic() {
+    const music = document.getElementById("weddingMusic");
+    const musicBtn = document.getElementById("musicBtn");
+
+    if (music.paused) {
+        try {
+            await music.play();
+            musicBtn.classList.add("playing");
+            musicBtn.textContent = "♫";
+        } catch (error) {
+            alert("Please check that music/wedding.mp3 exists.");
+        }
+    } else {
+        music.pause();
+        musicBtn.classList.remove("playing");
+        musicBtn.textContent = "♪";
+    }
+}
+
+
+/* COUNTDOWN */
+
+const weddingDate = new Date(WEDDING.date).getTime();
+let celebrationShown = false;
+
+function updateCountdown() {
+    const difference = weddingDate - Date.now();
+
+    if (difference <= 0) {
+        ["days","hours","minutes","seconds"].forEach(id => {
+            document.getElementById(id).textContent = "00";
+        });
+
+        document.getElementById("countdownMessage").textContent =
+            "The beautiful day has arrived!";
+
+        if (!celebrationShown) {
+            celebrationShown = true;
+            document.getElementById("celebration").classList.add("active");
+        }
+
+        return;
+    }
+
+    const values = {
+        days: Math.floor(difference / 86400000),
+        hours: Math.floor((difference / 3600000) % 24),
+        minutes: Math.floor((difference / 60000) % 60),
+        seconds: Math.floor((difference / 1000) % 60)
+    };
+
+    Object.entries(values).forEach(([id,value]) => {
+        document.getElementById(id).textContent =
+            String(value).padStart(2,"0");
+    });
+}
+
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+function closeCelebration() {
+    document.getElementById("celebration").classList.remove("active");
+}
+
+
+/* SCROLL REVEAL */
+
+const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+        }
+    });
+},{ threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(element => {
+    revealObserver.observe(element);
+});
+
+
+/* PHOTO LIGHTBOX */
+
+function openLightbox(element) {
+    const image = element.querySelector("img");
+
+    if (!image || !image.complete || !image.naturalWidth) return;
+
+    document.getElementById("lightboxImage").src = image.src;
+    document.getElementById("lightbox").classList.add("active");
+}
+
+function closeLightbox() {
+    document.getElementById("lightbox").classList.remove("active");
+}
+
+document.addEventListener("keydown",event => {
+    if (event.key === "Escape") closeLightbox();
+});
+
+
+/* GUEST WISHES - LOCAL BROWSER STORAGE */
+
+const wishForm = document.getElementById("wishForm");
+const wishList = document.getElementById("wishList");
+
+function getSavedWishes() {
+    try {
+        return JSON.parse(localStorage.getItem("tiaAromalWishes") || "[]");
+    } catch {
+        return [];
+    }
+}
+
+function renderWishes() {
+    wishList.replaceChildren();
+
+    getSavedWishes().slice().reverse().forEach(wish => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "wish";
+
+        const name = document.createElement("strong");
+        name.textContent = wish.name;
+
+        const message = document.createElement("p");
+        message.textContent = wish.message;
+
+        wrapper.append(name,message);
+        wishList.appendChild(wrapper);
+    });
+}
+
+wishForm.addEventListener("submit",event => {
+    event.preventDefault();
+
+    const name = document.getElementById("guestName").value.trim();
+    const message = document.getElementById("guestMessage").value.trim();
+
+    if (!name || !message) return;
+
+    const wishes = getSavedWishes();
+    wishes.push({name,message});
+
+    localStorage.setItem("tiaAromalWishes",JSON.stringify(wishes));
+
+    wishForm.reset();
+    renderWishes();
+});
+
+renderWishes();
+
+
+/* WHATSAPP SHARING */
+
+function shareWhatsApp() {
+    const message =
+        `You're invited to celebrate the wedding of ${WEDDING.bride} & ${WEDDING.groom}!\n\n` +
+        `Date: Wednesday, 10 February 2027\n` +
+        `Time: 09:30 AM – 10:30 AM\n` +
+        `Venue: ${WEDDING.venue}\n\n` +
+        `View the invitation here:\n${INVITATION_URL}`;
+
+    window.open(
+        "https://wa.me/?text=" + encodeURIComponent(message),
+        "_blank"
+    );
+}
+
+
+/* QR CODE */
+
+function generateQRCode() {
+    const qrElement = document.getElementById("qrcode");
+    qrElement.replaceChildren();
+
+    if (typeof QRCode === "undefined") {
+        qrElement.textContent = "QR code library could not be loaded.";
+        return;
+    }
+
+    new QRCode(qrElement,{
+        text: INVITATION_URL,
+        width: 128,
+        height: 128,
+        colorDark: "#49372b",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+}
+
+generateQRCode();
+
+
+/* SAVE THE DATE - CALENDAR */
+
+function toLocalICSDate(date) {
+    const pad = value => String(value).padStart(2,"0");
+
+    return date.getFullYear() +
+        pad(date.getMonth()+1) +
+        pad(date.getDate()) + "T" +
+        pad(date.getHours()) +
+        pad(date.getMinutes()) +
+        pad(date.getSeconds());
+}
+
+function downloadCalendar() {
+    const start = new Date(WEDDING.date);
+    const end = new Date(WEDDING.endTime);
+
+    const event = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Tia and Aromal//Wedding Invitation//EN",
+        "CALSCALE:GREGORIAN",
+        "BEGIN:VEVENT",
+        "UID:tia-aromal-wedding-20270210@invitation",
+        "DTSTAMP:" + new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,""),
+        "DTSTART:" + toLocalICSDate(start),
+        "DTEND:" + toLocalICSDate(end),
+        "SUMMARY:Tia & Aromal Wedding",
+        "LOCATION:" + WEDDING.venue.replace(/[,;]/g,"\\$&"),
+        "DESCRIPTION:Wedding invitation for Tia and Aromal.",
+        "END:VEVENT",
+        "END:VCALENDAR"
+    ].join("\r\n");
+
+    const blob = new Blob([event],{
+        type:"text/calendar;charset=utf-8"
+    });
+
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+
+    link.href = url;
+    link.download = "Tia-and-Aromal-Wedding.ics";
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    URL.revokeObjectURL(url);
+}
+
+
+/* SURPRISE */
+
+function revealSurprise() {
+    const message = document.getElementById("surpriseMessage");
+    message.style.display = "block";
+
+    message.scrollIntoView({
+        behavior:"smooth",
+        block:"nearest"
+    });
+}
+
+</script>
+
+</body>
+</html>
